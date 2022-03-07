@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section section-register">
+    <div class="marco">
+        <h1>Regístrate</h1>
+        <form method='post'>{% csrf_token %}
+            {{ form.username.errors }}
+            <label for="{{ form.username.id_for_label }}">Nombre de usuario</label>
+            {{ form.username }}
+
+            {{ form.email.errors }}
+            <label for="{{ form.email.id_for_label }}">Correo Electrónico</label>
+            {{ form.email }}
+
+            {{ form.password1.errors }}
+            <label for="{{ form.password1.id_for_label }}">Contraseña</label>
+            {{ form.password1 }}
+
+            {{ form.password2.errors }}
+            <label for="{{ form.password2.id_for_label }}">Confirmar Contraseña</label>
+            {{ form.password2 }}
+        
+            <button type="submit" class="btn-register">Registrarse</button>
+        </form> 
+    </div>
+</section>
+{% endblock content %}

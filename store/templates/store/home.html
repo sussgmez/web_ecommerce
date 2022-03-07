@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section section-home">
+    <h1>Bienvenid@ a <span>MiTiendaOnline</span></h1>
+    <div class="separador"></div>
+    <div class="div-categorias">
+        <h2>Explora y Descubre</h2>
+        <h3>Precios increíbles</h3>
+        <div class="categorias">
+            <a href="../search/?search=audífonos" class="categoria">
+                <div class="imagen">
+                    <img src="{% static 'img/cat_audifonos.png' %}" alt="">
+                </div>
+                <h4>Audífonos</h4>
+            </a>
+            <a href="../search/?search=reloj" class="categoria">
+                <div class="imagen">
+                    <img src="{% static 'img/cat_relojes.png' %}" alt="">
+                </div>
+                <h4>Relojes</h4>
+            </a>
+            <a href="../search/?search=telefono" class="categoria">
+                <div class="imagen">
+                    <img src="{% static 'img/cat_telefonos.png' %}" alt="">
+                </div>
+                <h4>Celulares</h4>
+            </a>
+            <a href="../search/?search=gorra" class="categoria">
+                <div class="imagen">
+                    <img src="{% static 'img/cat_gorras.png' %}" alt="">
+                </div>
+                <h4>Gorras</h4>
+            </a>
+        </div>
+    </div>
+    <div class="div-destacados">
+        <h2>Destacados</h2>
+        <div class="productos">
+            {% for producto in productos_destacados %}
+            <a class="producto" href="{% url 'product' id=producto.id %}">
+                <div class="imagen">
+                    <img src="{{ producto.imagen.url }}" alt="">
+                </div>
+                <div class="informacion">
+                    <h3>{{ producto.nombre }}</h3>
+                    <p><b>{{ producto.precio }}$</b></p>     
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section class="section section-search">
+    <p class="filtro-tag">Filtros</p>
+    <div class="filters hide">
+        <h2>Precio</h2>
+        {% if precios.0 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&max=10">Menos de 10$ ({{ precios.0 }})</a>{% endif %}
+        {% if precios.1 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=10&max=20">Entre 10$ y 20$ ({{ precios.1 }})</a>{% endif %}
+        {% if precios.2 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=20&max=50">Entre 20$ y 50$ ({{ precios.2 }})</a>{% endif %}
+        {% if precios.3 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=50&max=100">Entre 50$ y 100$({{ precios.3 }})</a>{% endif %}
+        {% if precios.4 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=100&max=200">Entre 100$ y 200$ ({{ precios.4 }})</a>{% endif %}
+        {% if precios.5 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=200&max=500">Entre 200$ y 500$ ({{ precios.5 }})</a>{% endif %}
+        {% if precios.6 > 0 %}<a href="{{request.path}}?search={{request.GET.search}}&min=500">Más de 500$ ({{ precios.6 }})</a>{% endif %}
+        <a href="{{request.path}}?search={{request.GET.search}}">Borrar Filtros</a>
+    </div>    
+    <div>
+        <h1>Resultados de: {{request.GET.search}}</h1>
+        {% for producto in productos %}
+            <a class="producto" href="{% url 'product' id=producto.id %}">
+                <div class="imagen">
+                        <img src="{{ producto.imagen.url }}" alt="">
+                </div> 
+                <div class="informacion">
+                    <h2 class="nombre">{{ producto.nombre }}</h2>
+                    {% if producto.num_disponibles > 0 %}
+                    <h3 class="precio">{{ producto.precio }}$</h3>
+                    {% else %}
+                    <p>Agotado</p>
+                    {% endif %}
+                    
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
