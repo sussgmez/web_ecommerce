@@ -37,7 +37,9 @@ function changeImage(imagen_url) {
 
 const btn_navbar = document.querySelector('.icon-navbar')
 btn_navbar.addEventListener('click', () => {
-    close('.login')
+    try {
+        close('.login')
+    } catch (error) {}
     display_or_close('.navbar')
 }) 
 

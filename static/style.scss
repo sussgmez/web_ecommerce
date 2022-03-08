@@ -91,7 +91,7 @@ a {
     top: 100%;
     right: 0;
     
-    max-height: 200px;
+    max-height: 230px;
 
     overflow: hidden;
     z-index: 2;
@@ -115,6 +115,13 @@ a {
         .input {
             border: 1px solid #DCDCDC;
         }
+    }
+
+    .error-login {
+        font-size: 14px;
+        font-weight: 700;
+        color: rgb(201, 0, 0);
+        padding: 10px 0;
     }
 }
 

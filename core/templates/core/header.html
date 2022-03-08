@@ -1,0 +1,49 @@
+{% load static %}
+<header class="header">
+    <a class="logo" href="{% url 'home' %}">
+        <img src="{% static 'img/logo.png' %}" alt="MiTiendaOnline">
+    </a>
+    <svg class="icon-navbar" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <line x1="4" y1="6" x2="20" y2="6" />
+        <line x1="4" y1="12" x2="20" y2="12" />
+        <line x1="4" y1="18" x2="20" y2="18" />
+    </svg>
+    <nav class="navbar hide">
+        <form class="form form-search" action="/search/" method="get">
+            <input name="search" id="search" class="input" type="text" placeholder="Ingresar busqueda">
+            <button class="btn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="10" cy="10" r="7" />
+                <line x1="21" y1="21" x2="15" y2="15" />
+              </svg></button>
+        </form>
+        {% if request.user.is_authenticated %}
+        <a class="option-nav" href="{% url 'orders' %}">Pedidos</a>
+        <a class="option-nav" href='{% url 'logout' %}'>Cerrar Sesión</a> 
+         
+        {% else %}
+        {% if registration_page %}
+        <a class="option-nav" href="{% url 'home' %}">Inicio</a>
+        {% else %}
+        <a class="option-nav option-login">Iniciar Sesión</a>
+        {% endif %}
+        <a class="option-nav" href="{% url 'register' %}">Registrarse</a>      
+        {% endif %}           
+        
+    </nav>
+
+    <div class="login hide {{ nohide }}">
+        <form class="form form-login" action="" method='post'>{% csrf_token %}
+            <label for="input-username">Nombre de usuario:</label>
+            <input name='username' class="input" id="input-username" type="text" placeholder="Ingrese su nombre de usuario">
+            <label for="input-password">Contraseña:</label>
+            <input name='password' class="input" id="input-password" type="password" placeholder="Ingrese su contraseña">
+            <button class="btn">Ingresar</button>
+        </form>   
+        {% if error_login %}
+        <p class="error-login">Nombre de usuario o contraseña incorrectos</p>
+        {% endif %} 
+    </div>
+
+</header>

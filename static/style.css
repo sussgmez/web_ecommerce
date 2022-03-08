@@ -84,7 +84,7 @@ a:hover {
   position: absolute;
   top: 100%;
   right: 0;
-  max-height: 200px;
+  max-height: 230px;
   overflow: hidden;
   z-index: 2;
   padding: 10px;
@@ -107,6 +107,12 @@ a:hover {
 }
 .login form .input {
   border: 1px solid #DCDCDC;
+}
+.login .error-login {
+  font-size: 14px;
+  font-weight: 700;
+  color: #c90000;
+  padding: 10px 0;
 }
 
 .navbar {

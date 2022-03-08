@@ -14,3 +14,9 @@ class RegisterView(FormView):
         user = form.save()
         login(self.request, user)
         return HttpResponseRedirect(self.get_success_url())
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["registration_page"] = True
+        return context
+    

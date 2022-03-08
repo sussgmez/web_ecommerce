@@ -22,7 +22,7 @@
         {% for pedido in pedidos %}
         <div class="pedido">
             <p class="id">#{{ pedido.id }}</p>
-            <p><b>Producto:</b> {{ pedido.product.nombre }}</p>
+            <p><b>Producto:</b> {{ pedido.producto.nombre }}</p>
             <p><b>Cantidad:</b> {{ pedido.cantidad }}</p>
             <p><b>P. Total:</b> {{ pedido.precio_total }}</p>
             <a class="add-document" href="">adjuntar transferencia<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">

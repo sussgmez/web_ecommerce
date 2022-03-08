@@ -1,64 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
-    <title>MiTiendaOnline</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'style.css' %}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+	<title>MiTiendaOnline</title>
 </head>
 <body>
-    
-    <header class="header">
-        <a class="logo" href="{% url 'home' %}">
-            <img src="{% static 'img/logo.png' %}" alt="MiTiendaOnline">
-        </a>
-        <svg class="icon-navbar" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-            <line x1="4" y1="6" x2="20" y2="6" />
-            <line x1="4" y1="12" x2="20" y2="12" />
-            <line x1="4" y1="18" x2="20" y2="18" />
-        </svg>
-        <nav class="navbar hide">
-            <form class="form form-search" action="/search/" method="get">
-                <input name="search" id="search" class="input" type="text" placeholder="Ingresar busqueda">
-                <button class="btn" type="submit"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="3" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                    <circle cx="10" cy="10" r="7" />
-                    <line x1="21" y1="21" x2="15" y2="15" />
-                  </svg></button>
-            </form>
-            {% if request.user.is_authenticated %}
-            <a class="option-nav" href="{% url 'orders' %}">Pedidos</a>
-            <a class="option-nav" href='{% url 'logout' %}'>Cerrar Sesión</a> 
-             
-            {% else %}
-            <a class="option-nav option-login">Iniciar Sesión</a>
-            <a class="option-nav" href="{% url 'register' %}">Registrarse</a>      
-            {% endif %}           
-        </nav>
-        {% if not request.user.is_authenticated %}
-        <div class="login hide {{ nohide }}">
-            <form class="form form-login" action="" method='post'>{% csrf_token %}
-                <label for="input-email">Email:</label>
-                <input name='username' class="input" id="input-email" type="text" placeholder="Ingrese su email">
-                <label for="input-password">Contraseña:</label>
-                <input name='password' class="input" id="input-password" type="password" placeholder="Ingrese su contraseña">
-                <button class="btn">Ingresar</button>
-            </form>    
-        </div>
-        {% endif %}  
-    </header>
+	
+	{% include 'core/header.html' %}
 
-    {% block content %}{% endblock content %}
+	{% block content %}{% endblock content %}
 
-    <footer class="footer">
-        <p>MiTiendaOnline | Todos Los Derechos Reservados</p>
-    </footer>
-    <script src="{% static 'app.js' %}"></script>
+	<footer class="footer">
+		<p>MiTiendaOnline | Todos Los Derechos Reservados</p>
+	</footer>
+	<script src="{% static 'app.js' %}"></script>
 
 </body>
 </html>
