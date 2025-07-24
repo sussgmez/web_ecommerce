@@ -7,35 +7,34 @@
 {% endblock %}
 
 {% block content %}
-  <div class="login">
-    <form method="post" class="form">
-      {% csrf_token %}
-      <div>
-        <h2>¡Bienvenido a todosorteos!</h2>
-        <h4>Inicia sesión para descubrir que increíbles premios te esperan 🥇</h4>
+  <section class="section-login">
+    <div class="login">
+      <div class="header-form">
+        <h3>INICIAR SESIÓN</h3>
       </div>
-      <div class="form-fields">
-        <h3>Iniciar sesión</h3>
-        <label class="label" for="id_email">Email</label>
-        {{ form.email }}
-        {% comment %} <input class="input" type="email" name="email" id="id_email" placeholder="Correo electrónico" /> {% endcomment %}
-        <label class="label" for="id_password">Contraseña</label>
-        <input class="input" type="password" name="password" id="id_passsword" placeholder="Contraseña" />
+      <form action="" class="login-form" id="id_login_form" method="post">
+        {% csrf_token %}
+        <div class="field">
+          <label for="id_email" class="label">Email</label>
+          {{ form.email }}
+        </div>
+        <div class="field">
+          <label for="id_password" class="label">Contraseña</label>
+          {{ form.password }}
+        </div>
         {% if form.non_field_errors %}
           <div class="errors">
             {% for error in form.non_field_errors %}
-              <div class="error">
-                <p>{{ error }}</p>
-              </div>
+              <p class="error">{{ error }}</p>
             {% endfor %}
           </div>
         {% endif %}
-        <button class="button">Ingresar</button>
-        <small>¿No tienes una cuenta?, <a href="{% url 'signup' %}"><b>regístrate</b></a></small>
-      </div>
-    </form>
-    <div class="background-login">
-      <img src="{% static 'img/background-login.png' %}" alt="" />
+        <div class="login-buttons">
+          <button class="button login-button">Iniciar sesión</button>
+          <hr>
+          <a class="button signup-button" href="{% url "signup" %}">Registrarse</a>
+        </div>
+      </form>
     </div>
-  </div>
+  </section>
 {% endblock %}

@@ -1,0 +1,34 @@
+@use 'variables' as *;
+@use 'responsive' as *;
+
+@forward 'components/header.scss';
+@forward 'pages/login.scss';
+@forward 'pages/signup.scss';
+@forward 'pages/home.scss';
+
+
+* {
+    box-sizing: border-box;
+
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+}
+
+
+.button {
+    text-align: center;
+    text-decoration: none;
+}
+
+.hidden-xs {
+    @include xs {
+        display: none !important;
+    }
+}
+
+.hidden-sm {
+    @include sm {
+        display: none !important;
+    }
+}
+
