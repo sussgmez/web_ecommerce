@@ -1,6 +1,6 @@
 .header {
   border-bottom: 1px solid hsl(0, 0%, 80%);
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -59,6 +59,46 @@
 .header .nav-options {
   display: flex;
   gap: 0.5rem;
+  position: relative;
+}
+.header .user-options .user-icon,
+.header .user-options .cart-icon,
+.header .nav-options .user-icon,
+.header .nav-options .cart-icon {
+  cursor: pointer;
+}
+.header .user-options .user-menu,
+.header .nav-options .user-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #000;
+  min-width: 180px;
+  box-shadow: -2px 4px 0 #000;
+}
+.header .user-options .user-menu a,
+.header .nav-options .user-menu a {
+  text-wrap: nowrap;
+  text-decoration: none;
+  color: #000;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-bottom: 1px solid hsl(0, 0%, 90%);
+}
+.header .user-options .user-menu a:hover,
+.header .nav-options .user-menu a:hover {
+  background-color: hsl(0, 0%, 95%);
+}
+@media (max-width: 600px) {
+  .header .user-options .user-menu,
+  .header .nav-options .user-menu {
+    width: calc(100vw - 2rem);
+    max-width: 480px;
+  }
 }
 .header .navbar {
   width: 100%;
@@ -104,7 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: calc(100vh - 8rem);
   padding: 1rem;
 }
 .section-login .login {
@@ -114,11 +154,14 @@
   max-width: 480px;
   background-color: #fff;
 }
+.section-login .login h3 {
+  margin: 0;
+  margin-bottom: 1rem;
+}
 .section-login .login-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 1.5rem;
 }
 .section-login .login-form .label {
   display: block;
@@ -181,6 +224,10 @@
 .button {
   text-align: center;
   text-decoration: none;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @media (max-width: 600px) {

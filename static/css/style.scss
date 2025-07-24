@@ -20,6 +20,10 @@
     text-decoration: none;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .hidden-xs {
     @include xs {
         display: none !important;
