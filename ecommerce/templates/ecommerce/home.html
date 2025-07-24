@@ -7,5 +7,8 @@
 {% endblock %}
 
 {% block content %}
-
+  <section class="section-product-list">
+    <h2>Productos disponibles</h2>
+    <div id="id_product_list" class="product-list" hx-get="{% url 'product-list' %}" hx-trigger="load"></div>
+  </section>
 {% endblock %}

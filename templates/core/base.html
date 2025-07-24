@@ -20,7 +20,7 @@
       {% endblock %}- Celestia
     </title>
   </head>
-  <body>
+  <body hx-on:click="hideAll()">
     {% include 'components/header.html' %}
 
     {% block content %}

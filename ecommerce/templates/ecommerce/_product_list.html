@@ -1,0 +1,21 @@
+{% for object in object_list %}
+  <a class="product" href="" hx-on::after-process-node="showPrice(htmx.find('#id_product_total_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, {{ object.discount|stringformat:'.2f' }});showPrice(htmx.find('#id_product_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, 0);">
+    <div class="product-image">
+      <img src="{{ object.productimage.first.image.url }}" alt="" />
+    </div>
+    <div class="product-info">
+      <h4 class="product-name">{{ object.product.name }}</h4>
+      <p class="product-color">
+        <b>Color:</b>
+        {{ object.color }}
+      </p>
+      <div class="price">
+        {% if object.discount != 0 %}
+          <p class="product-price" id="id_product_price_{{ object.pk }}">{{ object.price }}</p>
+          <p class="product-discount">- {{ object.discount }}%</p>
+        {% endif %}
+        <p class="product-price-total" id="id_product_total_price_{{ object.pk }}" hx-on::after-process-node="console.log('test')"></p>
+      </div>
+    </div>
+  </a>
+{% endfor %}

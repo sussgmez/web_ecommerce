@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.core.validators import MaxValueValidator
 from simple_history.models import HistoricalRecords
 
 
@@ -22,8 +23,8 @@ class Category(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(
-        "ecommerce.Product", verbose_name=_(""), on_delete=models.CASCADE
+    product_color = models.ForeignKey(
+        "ecommerce.ProductColor", verbose_name=_(""), on_delete=models.CASCADE, related_name='productimage'
     )
     image = models.ImageField(_("Imagen"), upload_to="products")
 
@@ -44,7 +45,6 @@ class Product(models.Model):
     )
     price = models.FloatField(_("Precio"))
     history = HistoricalRecords()
-    stock = models.IntegerField(_("Cantidad disponible"))
 
     class Meta:
         verbose_name = _("product")
@@ -54,12 +54,38 @@ class Product(models.Model):
         return self.name
 
 
+class ProductColor(models.Model):
+    product = models.ForeignKey("ecommerce.Product", verbose_name=_("Producto"), on_delete=models.CASCADE)
+    color = models.CharField(_("Color"), max_length=50)
+    discount = models.PositiveIntegerField(_("Descuento"), default=0, validators=[MaxValueValidator(100)])
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = _("Product (color)")
+        verbose_name_plural = _("Products (color)")
+
+    def __str__(self):
+        return f'{self.product.name} ({self.color})' 
+
+
+
+class ProductSize(models.Model):
+    product_color = models.ForeignKey("ecommerce.ProductColor", verbose_name=_("Producto (Color)"), on_delete=models.CASCADE)  
+    size = models.CharField(_("Talla"), max_length=50)
+    stock = models.IntegerField(_("Stock"), default=0)
+
+    class Meta:
+        verbose_name = _("productsize")
+        verbose_name_plural = _("productsizes")
+
+
+
 class Order(models.Model):
     user = models.ForeignKey(
         "authentication.CustomUser", verbose_name=_("Usuario"), on_delete=models.CASCADE
     )
     product = models.ForeignKey(
-        "ecommerce.Product", verbose_name=_("Producto"), on_delete=models.CASCADE
+        "ecommerce.ProductSize", verbose_name=_("Producto"), on_delete=models.CASCADE
     )
     quantity = models.PositiveIntegerField(_("Cantidad"))
 

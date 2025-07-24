@@ -2,7 +2,7 @@
 
 <header class="header">
   <div class="nav-options hidden-sm">
-    <div hx-on:click="htmx.toggleClass('#id_navbar', 'hidden-xs');">
+    <div hx-on:click="htmx.toggleClass('#id_navbar', 'hidden-xs');hideAll(htmx.find('#id_navbar'));event.stopPropagation()">
       <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -11,7 +11,7 @@
         </g>
       </svg>
     </div>
-    <div hx-on:click="htmx.toggleClass('#id_form_search', 'hidden-xs');">
+    <div hx-on:click="htmx.toggleClass('#id_form_search', 'hidden-xs');hideAll(htmx.find('#id_form_search'));event.stopPropagation()">
       <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -70,5 +70,6 @@
     <a class="nav-link" href="">Caballeros</a>
     <a class="nav-link" href="">Niños</a>
     <a class="nav-link" href="">Accesorios</a>
+    <a class="nav-link" href="">Todas las categorías</a>
   </nav>
 </header>
