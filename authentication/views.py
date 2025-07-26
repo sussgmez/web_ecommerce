@@ -38,9 +38,14 @@ class LoginView(TemplateView):
         form = LoginForm(request.POST)
         if form.is_valid():
             form.login(request)
-            return redirect("home")
+            try:
+                return redirect(self.request.GET['next'])
+            except:
+                return redirect("home")
         else:
             return render(request, self.template_name, {"form": form})
+        
+    
 
 
 def logout_handler(request):

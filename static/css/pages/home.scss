@@ -5,7 +5,7 @@
 .section-product-list {
     padding: 2rem 1rem;
 
-    max-width: 480px;
+    max-width: $xs;
     margin: auto;
 
     h2 {
@@ -20,7 +20,7 @@
             width: 100%;
             border: 1px solid $black;
             overflow: hidden;
-            max-width: calc(480px - 2rem);
+            max-width: calc($xs - 2rem);
             color: $black;
             text-decoration: none;
             box-shadow: 0 0 0 $black;
@@ -30,8 +30,8 @@
                 display: flex;
                 width: calc(100vw - 2rem);
                 height: calc(100vw - 2rem);
-                max-width: calc(480px - 2rem);
-                max-height: calc(480px - 2rem);
+                max-width: calc($xs - 2rem);
+                max-height: calc($xs - 2rem);
 
                 img {
                     width: 100%;

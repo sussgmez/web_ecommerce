@@ -1,0 +1,28 @@
+<form action="{% url 'order-create' %}?size={{ product.pk }}" method="post" class="form-order-create">
+  {% csrf_token %}
+  <input type="hidden" name="user" value="{{ user.pk }}" />
+  <input type="hidden" name="product" value="{{ product.pk }}" />
+
+  <div class="form-quantity">
+    <div class="form-field">
+      <label for="id_quantity">
+        Cantidad:
+      </label>
+      <select class="select-quantity" name="quantity" id="id_quantity">
+        {% for num in max_quantity %}
+          <option value="{{ num }}">{{ num }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    {% if product.stock < 10 and product.stock > 1 %}
+      <p class="extra-quantity">¡Últimos {{ product.stock }} disponibles!</p>
+    {% elif product.stock == 1 %}
+      <p class="extra-quantity">¡Último disponible!</p>
+    {% endif %}
+  </div>
+  {% if not user.is_authenticated %}
+    <a class="button-add-to-cart" href="{% url 'login' %}?next={% url 'product' product.product_color.pk %}">Añadir al carrito +</a>
+  {% else %}
+    <button id="id_button_add_to_cart" class="button-add-to-cart">Añadir al carrito +</button>
+  {% endif %}
+</form>

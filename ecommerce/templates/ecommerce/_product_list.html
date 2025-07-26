@@ -1,5 +1,5 @@
 {% for object in object_list %}
-  <a class="product" href="" hx-on::after-process-node="showPrice(htmx.find('#id_product_total_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, {{ object.discount|stringformat:'.2f' }});showPrice(htmx.find('#id_product_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, 0);">
+  <a class="product" href="{% url 'product' object.pk %}" hx-on::after-process-node="showPrice(htmx.find('#id_product_total_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, {{ object.discount|stringformat:'.2f' }});showPrice(htmx.find('#id_product_price_{{ object.pk }}'), {{ object.product.price|stringformat:'.2f' }}, 0);">
     <div class="product-image">
       <img src="{{ object.productimage.first.image.url }}" alt="" />
     </div>
@@ -14,7 +14,7 @@
           <p class="product-price" id="id_product_price_{{ object.pk }}">{{ object.price }}</p>
           <p class="product-discount">- {{ object.discount }}%</p>
         {% endif %}
-        <p class="product-price-total" id="id_product_total_price_{{ object.pk }}" hx-on::after-process-node="console.log('test')"></p>
+        <p class="product-price-total" id="id_product_total_price_{{ object.pk }}"></p>
       </div>
     </div>
   </a>

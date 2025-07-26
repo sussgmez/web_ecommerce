@@ -13,3 +13,8 @@ function showPrice(element, price, discount) {
     if (element != null)
         element.innerHTML = Intl.NumberFormat('en-us', { style: "currency", currency: "USD" }).format((price-price*discount/100))
 }
+
+
+function changeImage(url) {
+    htmx.find('#id_main_productimage').src = url;
+}

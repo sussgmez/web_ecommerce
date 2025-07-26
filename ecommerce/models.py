@@ -24,7 +24,10 @@ class Category(models.Model):
 
 class ProductImage(models.Model):
     product_color = models.ForeignKey(
-        "ecommerce.ProductColor", verbose_name=_(""), on_delete=models.CASCADE, related_name='productimage'
+        "ecommerce.ProductColor",
+        verbose_name=_(""),
+        on_delete=models.CASCADE,
+        related_name="productimage",
     )
     image = models.ImageField(_("Imagen"), upload_to="products")
 
@@ -55,9 +58,13 @@ class Product(models.Model):
 
 
 class ProductColor(models.Model):
-    product = models.ForeignKey("ecommerce.Product", verbose_name=_("Producto"), on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        "ecommerce.Product", verbose_name=_("Producto"), on_delete=models.CASCADE
+    )
     color = models.CharField(_("Color"), max_length=50)
-    discount = models.PositiveIntegerField(_("Descuento"), default=0, validators=[MaxValueValidator(100)])
+    discount = models.PositiveIntegerField(
+        _("Descuento"), default=0, validators=[MaxValueValidator(100)]
+    )
     history = HistoricalRecords()
 
     class Meta:
@@ -65,19 +72,25 @@ class ProductColor(models.Model):
         verbose_name_plural = _("Products (color)")
 
     def __str__(self):
-        return f'{self.product.name} ({self.color})' 
-
+        return f"{self.product.name} ({self.color})"
 
 
 class ProductSize(models.Model):
-    product_color = models.ForeignKey("ecommerce.ProductColor", verbose_name=_("Producto (Color)"), on_delete=models.CASCADE)  
+    product_color = models.ForeignKey(
+        "ecommerce.ProductColor",
+        verbose_name=_("Producto (Color)"),
+        related_name="productsize",
+        on_delete=models.CASCADE,
+    )
     size = models.CharField(_("Talla"), max_length=50)
     stock = models.IntegerField(_("Stock"), default=0)
 
     class Meta:
         verbose_name = _("productsize")
         verbose_name_plural = _("productsizes")
-
+        
+    def __str__(self):
+        return f'{self.product_color} ({self.size})'
 
 
 class Order(models.Model):
@@ -92,3 +105,6 @@ class Order(models.Model):
     class Meta:
         verbose_name = _("order")
         verbose_name_plural = _("orders")
+
+    def __str__(self):
+        return f'{self.user.email} | {self.product} | {self.quantity}'

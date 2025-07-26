@@ -5,11 +5,11 @@
 @forward 'pages/login.scss';
 @forward 'pages/signup.scss';
 @forward 'pages/home.scss';
+@forward 'pages/product.scss';
 
 
 * {
     box-sizing: border-box;
-
     font-family: "Open Sans", sans-serif;
     font-optical-sizing: auto;
 }
@@ -34,5 +34,13 @@
     @include sm {
         display: none !important;
     }
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: $black;
 }
 
